@@ -57,7 +57,7 @@ button.deleteButton {
   color: white;
 }
 
-button {
+button, .linkButton {
  background-color: #3b82f6;
  color: #ffffff;
  font-weight: 700;
