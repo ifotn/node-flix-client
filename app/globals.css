@@ -109,3 +109,9 @@ fieldset {
 li.card a:hover {
   color: #3b82f6;
 }
+
+.error {
+  color: firebrick;
+  font-weight: 600;
+  margin-left: 5px;
+}
