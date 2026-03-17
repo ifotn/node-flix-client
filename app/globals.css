@@ -51,7 +51,12 @@ h3 {
  margin-bottom: 5px;
  font-size: large;
 }
- 
+
+button.deleteButton {
+  background-color: firebrick;
+  color: white;
+}
+
 button {
  background-color: #3b82f6;
  color: #ffffff;
