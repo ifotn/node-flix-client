@@ -1,5 +1,7 @@
 // api routes for /api/movies/{id}: GET (one), PUT, DELETE
 
+import { brotliDecompressSync } from "node:zlib";
+
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     // get id from url param
     const { id } = await params;
@@ -23,6 +25,25 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     });
 
     if (!res.ok) throw new Error('Failed to delete movie');
+
+    // return success response, there is no movie data
+    return new Response(null, { status: 204 });
+}
+
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    // get id from url param
+    const { id } = await params;
+
+    const body = await req.json();
+
+    // call GET (one) in server api
+    const res: Response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/v1/movies/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    });
+
+    if (!res.ok) throw new Error('Failed to update movie');
 
     // return success response, there is no movie data
     return new Response(null, { status: 204 });
