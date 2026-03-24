@@ -2,6 +2,9 @@ import Link from "next/link";
 
 import { Movie } from "@/types/movie";
 
+// prevent re-rendering so vercel build can finish
+export const dynamic = 'force-dynamic';
+
 async function getMovies(): Promise<Movie[]> {
     // call api layer which calls server to get movie data
     const res: Response = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}/movies`);
