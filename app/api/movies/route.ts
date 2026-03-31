@@ -13,10 +13,15 @@ export async function POST(req: Request) {
     // parse request body
     const body = await req.json();
 
+    // get jwt from cookie
+    const cookieHeader: string = req.headers.get('cookie') || '';
+
     // call server api
     const res: Response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/v1/movies`, {
         'method': 'POST',
-        'headers': { 'Content-Type': 'application/json' },
+        'headers': { 'Content-Type': 'application/json',
+            'Cookie': cookieHeader // pass cookie w/jwt as this method is private
+         },
         body: JSON.stringify(body)
     });
 

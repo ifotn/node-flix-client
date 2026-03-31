@@ -17,9 +17,13 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     // get id from url param
     const { id } = await params;
 
+    // get jwt from cookie
+    const cookieHeader: string = req.headers.get('cookie') || '';
+
     // call GET (one) in server api
     const res: Response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/v1/movies/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: { 'Cookie': cookieHeader }  // pass cookies w/jwt
     });
 
     if (!res.ok) throw new Error('Failed to delete movie');
@@ -34,10 +38,15 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
 
     const body = await req.json();
 
+    // get jwt from cookie
+    const cookieHeader: string = req.headers.get('cookie') || '';
+
     // call GET (one) in server api
     const res: Response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/v1/movies/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+            'Cookie': cookieHeader // pass cookies w/jwt for auth
+         },
         body: JSON.stringify(body)
     });
 
