@@ -1,7 +1,5 @@
 // api routes for /api/movies/{id}: GET (one), PUT, DELETE
 
-import { brotliDecompressSync } from "node:zlib";
-
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     // get id from url param
     const { id } = await params;
