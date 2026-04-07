@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Movie } from "@/types/movie";
+import { AuthCheck } from "../components/authCheck";
 
 // prevent re-rendering so vercel build can finish
 export const dynamic = 'force-dynamic';
@@ -22,7 +23,9 @@ export default async function Movies() {
     return (
         <main>
             <h1>Our Movies</h1> 
-            <Link href="/movies/create" className="standardLink">Add a New Movie</Link>
+            <AuthCheck>
+                <Link href="/movies/create" className="standardLink">Add a New Movie</Link>
+            </AuthCheck> 
             <ul>
                 {movies.map((movie) => (
                     <li className="card" key={movie._id}>

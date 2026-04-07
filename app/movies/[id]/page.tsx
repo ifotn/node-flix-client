@@ -1,6 +1,7 @@
 import { Movie } from "@/types/movie";
 import DeleteMovieButton from "@/app/components/deleteMovieButton";
 import Link from "next/link";
+import { AuthCheck } from "@/app/components/authCheck";
 
 // call api layer which calls server
 async function getMovie(id: string): Promise<Movie> {
@@ -26,8 +27,10 @@ export default async function MovieDetails({ params }: { params: Promise<{ id: s
                 <p>{movie.genre}</p>
                 <p>{movie.rating}/10</p>
                 <p>{movie.duration} Minutes</p>
-                <Link className="linkButton" href={`/movies/edit/${movie._id}`}>Edit</Link>
-                <DeleteMovieButton id={movie._id} />
+                <AuthCheck>
+                    <Link className="linkButton" href={`/movies/edit/${movie._id}`}>Edit</Link>
+                    <DeleteMovieButton id={movie._id} />
+                </AuthCheck>                 
             </article>
         </main>
     )

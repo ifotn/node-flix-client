@@ -64,32 +64,35 @@ export default function CreateMovie() {
     return (
         <main>
             <h1>Movie Details</h1>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <label htmlFor="">Title: *</label>
-                    <input name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    {errors.title && <span className="error">{errors.title}</span>}
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="">Year: *</label>
-                    <input name="year" id="year" value={year} onChange={(e) => setYear(e.target.value)} type="number" />
-                    {errors.year && <span className="error">{errors.year}</span>}
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="">Genre: </label>
-                     <input name="genre" id="genre" value={genre} onChange={(e) => setGenre(e.target.value)} />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="">Rating /10:</label>
-                    <input name="rating" id="rating" value={rating} onChange={(e) => setRating(e.target.value)} type="number" />
-                    {errors.rating && <span className="error">{errors.rating}</span>}
-                 </fieldset>              
-                <fieldset>
-                    <label htmlFor="">Duration (mins)</label>
-                     <input name="duration" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} type="number" />
-                </fieldset>
-                <button>Save</button>
-            </form>
+            <AuthCheck>
+                
+            </AuthCheck>
+                <form onSubmit={handleSubmit}>
+                    <fieldset>
+                        <label htmlFor="">Title: *</label>
+                        <input name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        {errors.title && <span className="error">{errors.title}</span>}
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="">Year: *</label>
+                        <input name="year" id="year" value={year} onChange={(e) => setYear(e.target.value)} type="number" />
+                        {errors.year && <span className="error">{errors.year}</span>}
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="">Genre: </label>
+                        <input name="genre" id="genre" value={genre} onChange={(e) => setGenre(e.target.value)} />
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="">Rating /10:</label>
+                        <input name="rating" id="rating" value={rating} onChange={(e) => setRating(e.target.value)} type="number" />
+                        {errors.rating && <span className="error">{errors.rating}</span>}
+                    </fieldset>              
+                    <fieldset>
+                        <label htmlFor="">Duration (mins)</label>
+                        <input name="duration" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} type="number" />
+                    </fieldset>
+                    <button>Save</button>
+                </form>
         </main>
     )
 }
