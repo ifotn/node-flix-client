@@ -4,6 +4,7 @@ import "./globals.css";
 
 // custom imports
 import Navbar from "./components/navbar";
+import { AppProvider } from "./context/appContext";  // wrapper of global context store
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <AppProvider>
+          <Navbar />
+          {children}
+        </AppProvider>         
       </body>
     </html>
   );

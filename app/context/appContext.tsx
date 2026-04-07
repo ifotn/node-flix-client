@@ -5,7 +5,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 // define global vars + setters
 interface AppContextType {
     appUsername: string | null;
-    setAppUsername: (username: string) => void;
+    setAppUsername: (username: string | null) => void;
     isAuthenticated: boolean;
     setIsAuthenticated: (authenticated: boolean) => void;
 }
@@ -28,7 +28,7 @@ export function AppProvider({ children }: AppProviderProps) {
         <AppContext.Provider value={value}>
             {children}
         </AppContext.Provider>
-    )
+    );
 }
 
 // provide context to children

@@ -2,8 +2,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Movie } from "@/types/movie";
+import { useAppContext } from "../context/appContext";
 
 export default function EditMovieComponent({ movie }: { movie: Movie }) {
+    // auth check from global context
+    const { isAuthenticated } = useAppContext();
+
     // router for redirect
     const router = useRouter();
 
@@ -62,6 +66,10 @@ export default function EditMovieComponent({ movie }: { movie: Movie }) {
         }      
     }
 
+    // hide form for anon users
+    if (!isAuthenticated) return (<main><h1 className="error">Unauthorized</h1></main>);
+
+    // show form for authenticated users
     return (
         <main>
             <h1>Movie Details</h1>

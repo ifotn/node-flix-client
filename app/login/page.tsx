@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "../context/appContext";
 
 export default function Login() {
     const router = useRouter();
+
+    // access global var setters
+    const { setAppUsername, setIsAuthenticated } = useAppContext();
 
     // state vars
     const [username, setUsername] = useState<string>('');
@@ -36,6 +40,9 @@ export default function Login() {
             return;
         }
 
+        // set global vars after login ok
+        setAppUsername(username);
+        setIsAuthenticated(true);
         router.push('/movies');
     }
 

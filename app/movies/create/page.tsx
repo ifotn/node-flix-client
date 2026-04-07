@@ -1,8 +1,12 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/app/context/appContext";
 
 export default function CreateMovie() {
+    // check global context for isAuthenticated var => user anon or authenticated?
+    const { isAuthenticated } = useAppContext();
+
     // router for redirect
     const router = useRouter();
 
@@ -61,12 +65,13 @@ export default function CreateMovie() {
         }      
     }
 
+    // hide form for anon users
+    if (!isAuthenticated) return (<main><h1 className="error">Unauthorized</h1></main>);
+
+    // show form for authenticated users
     return (
         <main>
             <h1>Movie Details</h1>
-            <AuthCheck>
-                
-            </AuthCheck>
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <label htmlFor="">Title: *</label>
