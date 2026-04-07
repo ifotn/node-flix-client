@@ -120,3 +120,7 @@ li.card a:hover {
   font-weight: 600;
   margin-left: 5px;
 }
+
+.navLink {
+  cursor: pointer;
+}
