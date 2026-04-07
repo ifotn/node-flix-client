@@ -26,4 +26,6 @@ NEXT_PUBLIC_SERVER_URL=http://localhost:4000/api
 # React / Next Client Domain
 NEXT_PUBLIC_CLIENT_URL=http://localhost:3000/api
 
+## Lesson 13 Notes
 
+This week we used the context hook as a global variable store with setters to hide forms from anonymous users and toggle navbar links depending on a user's authentication status.
